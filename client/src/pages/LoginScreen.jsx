@@ -52,7 +52,7 @@ const LoginScreen = () => {
                     </div>
 
                     <h1 className="text-2xl font-black text-white tracking-tight">
-                        العمده للعقارات
+                        أمولة للعقارات
                     </h1>
                     <p className="text-xs font-semibold text-amber-400 mt-1">
                         منظومة المستشار والتقييم العقاري الذكي
@@ -133,7 +133,7 @@ const LoginScreen = () => {
 
                 {/* Footer Notes */}
                 <div className="mt-6 pt-4 border-t border-white/10 text-center text-[11px] text-neutral-400">
-                    العمده للعقارات © 2025-2026 | مدعوم بنماذج الذكاء الاصطناعي العقاري
+                    أمولة للعقارات © 2025-2026 | مدعوم بنماذج الذكاء الاصطناعي العقاري
                 </div>
             </div>
         </div>

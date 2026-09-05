@@ -17,7 +17,7 @@ export default function WebLayout() {
 
     const navLinks = [
         { path: '/', label: isRTL ? 'الرئيسية' : 'Home' },
-        { path: '/copilot', label: isRTL ? 'المستشار الذكي (العمده AI)' : 'AI Copilot', badge: 'AI' },
+        { path: '/copilot', label: isRTL ? 'المستشار الذكي (أمولة AI)' : 'AI Copilot', badge: 'AI' },
         { path: '/valuation', label: isRTL ? 'تقييم الأسعار العادلة' : 'Price Valuator' },
         { path: '/payment-plans', label: isRTL ? 'حاسبة الأقساط (NPV)' : 'Payment Calculator' },
         { path: '/market', label: isRTL ? 'خريطة المناطق والكمبوندات' : 'Market Explorer' },
@@ -65,10 +65,10 @@ export default function WebLayout() {
                         </div>
                         <div>
                             <div className="text-xl font-black text-white tracking-tight flex items-center gap-1.5">
-                                <span>العمده للعقارات</span>
+                                <span>أمولة للعقارات</span>
                             </div>
                             <div className="text-[10px] font-bold text-amber-400 tracking-wider">
-                                {isRTL ? 'بوابة الذكاء العقاري في مصر' : 'PropTech Real Estate Intelligence'}
+                                {isRTL ? 'بوابة الذكاء العقاري في مصر | Amola' : 'Amola PropTech Real Estate Intelligence'}
                             </div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ export default function WebLayout() {
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <span className="text-2xl">🏢</span>
-                                <span className="text-lg font-black text-white">العمده للعقارات</span>
+                                <span className="text-lg font-black text-white">أمولة للعقارات</span>
                             </div>
                             <p className="text-neutral-400 leading-relaxed text-[11px]">
                                 أول منصة عقارية ذكية في مصر تجمع بين فحص الصفقات العادلة، محاكاة أنظمة السداد مع التضخم، والاستشارة المستقلة لحماية مصلحة المشتري والمستثمر.
@@ -206,7 +206,7 @@ export default function WebLayout() {
                                 أدوات المنظومة الذكية
                             </h4>
                             <ul className="space-y-2 text-[11px]">
-                                <li><a href="/copilot" className="hover:text-amber-400 transition-colors">المستشار العقاري التفاعلي (العمدة AI)</a></li>
+                                <li><a href="/copilot" className="hover:text-amber-400 transition-colors">المستشار العقاري التفاعلي (أمولة AI)</a></li>
                                 <li><a href="/valuation" className="hover:text-amber-400 transition-colors">مُقَيِّم الأسعار وفاحص الصفقات اللقطة</a></li>
                                 <li><a href="/payment-plans" className="hover:text-amber-400 transition-colors">حاسبة القيمة الحقيقية للتقسيط (NPV)</a></li>
                                 <li><a href="/market" className="hover:text-amber-400 transition-colors">مؤشر متوسط أسعار المتر في مصر</a></li>
@@ -216,14 +216,14 @@ export default function WebLayout() {
                         {/* Contact & Support */}
                         <div>
                             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-                                تواصل مع فريق العمده
+                                تواصل مع فريق أمولة
                             </h4>
                             <p className="text-[11px] text-neutral-400 mb-3">
                                 فريق من المستشارين العقاريين والماليين لمساعدتك في اتخاذ أفضل قرار شراء.
                             </p>
                             <div className="space-y-2 text-[11px] text-neutral-300">
                                 <div>📍 القاهرة الجديدة، التجمع الخامس، مصر</div>
-                                <div>✉️ info@alomda-realestate.com</div>
+                                <div>✉️ info@amola.ai</div>
                                 <div className="text-amber-400 font-bold">📞 19XXX / 010XXXXXXXX</div>
                             </div>
                         </div>
@@ -232,7 +232,7 @@ export default function WebLayout() {
                     {/* Bottom Disclaimer */}
                     <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-neutral-400">
                         <div>
-                            جميع الحقوق محفوظة © {new Date().getFullYear()} العمده للعقارات (El Omda Real Estate AI).
+                            جميع الحقوق محفوظة © {new Date().getFullYear()} أمولة للعقارات (Amola Real Estate AI).
                         </div>
                         <div className="text-neutral-400">
                             التقييمات والتحليلات مبنية على مؤشرات السوق العقاري المصري ونماذج الذكاء الاصطناعي الاستشارية.

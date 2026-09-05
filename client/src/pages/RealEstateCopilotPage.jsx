@@ -44,14 +44,14 @@ export default function RealEstateCopilotPage() {
             id: 'welcome',
             sender: 'bot',
             text: isRTL 
-                ? `### 🏠 أهلاً بك في العمده للعقارات - مستشارك العقاري الذكي
+                ? `### 🏠 أهلاً بك في أمولة للعقارات - مستشارك العقاري الذكي
 أنا مساعدك المتخصص في **سوق العقارات المصري**. يمكنني مساعدتك في:
 * **تقييم السعر العادل** للشقق والفلل ومقارنتها بأسعار السوق.
 * **حساب القيمة الحقيقية للأقساط (NPV)** ومقارنتها بخصومات الكاش والتضخم.
 * **استكشاف أفضل الكمبوندات والمطورين** في التجمع، زايد، العاصمة الإدارية، والساحل الشمالي.
 
 جرّب طرح سؤال أو اختر من الاقتراحات السريعة أدناه 👇`
-                : `### 🏠 Welcome to El Omda Real Estate Copilot (العمده للعقارات)
+                : `### 🏠 Welcome to Amola Real Estate Copilot (أمولة للعقارات)
 I am your dedicated **Egyptian Real Estate & Financial Intelligence Agent**. I can help you:
 * **Evaluate Fair Market Value** of properties and spot underpriced bargain deals.
 * **Calculate Net Present Value (NPV)** to evaluate developer installment plans vs. cash discounts.
@@ -149,7 +149,7 @@ Try asking a question or choose from the quick prompts below 👇`
                     </div>
                     <div>
                         <h1 className="text-xl font-bold text-white flex items-center gap-2">
-                            {isRTL ? 'العمده للعقارات - المستشار الذكي' : 'El Omda Real Estate Copilot'}
+                            {isRTL ? 'أمولة للعقارات - المستشار الذكي' : 'Amola Real Estate Copilot'}
                             <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
                                 {isRTL ? 'مباشر' : 'Live Agent'}
                             </span>

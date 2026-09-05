@@ -134,7 +134,7 @@ export default function HomePage() {
                     </div>
 
                     <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
-                        ابحث، قيّم، واستشر <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-100">العمده AI</span> في أي عقار
+                        ابحث، قيّم، واستشر <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-100">أمولة AI</span> في أي عقار
                     </h1>
 
                     <p className="text-sm md:text-base text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -404,10 +404,10 @@ export default function HomePage() {
             <div className="p-8 rounded-3xl bg-gradient-to-br from-[#0C1527] to-[#080E1A] border border-amber-500/20 shadow-2xl">
                 <div className="text-center max-w-xl mx-auto mb-8">
                     <span className="text-xs font-extrabold uppercase tracking-wider text-amber-400 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
-                        أدوات العمده للعقارات
+                        أدوات أمولة للعقارات
                     </span>
                     <h2 className="text-2xl md:text-3xl font-black text-white mt-3">
-                        لماذا تشتري عبر منظومة العمده AI؟
+                        لماذا تشتري عبر منظومة أمولة AI؟
                     </h2>
                     <p className="text-xs text-neutral-400 mt-1">
                         نمنحك القوة التحليلية والمالية التي كان يحتكرها كبار المستثمرين العقاريين
@@ -424,7 +424,7 @@ export default function HomePage() {
                             <Bot className="w-6 h-6" />
                         </div>
                         <h3 className="text-base font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">
-                            1. المستشار العقاري الذكي (العمده AI)
+                            1. المستشار العقاري الذكي (أمولة AI)
                         </h3>
                         <p className="text-xs text-neutral-400 leading-relaxed mb-4">
                             وكيل ذكي مدرب على مصطلحات السوق المصري، يفهم ميزانيتك ومقدمك، ويقترح عليك الوحدات المناسبة دون تحيز لأي مطور.
