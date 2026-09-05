@@ -16,6 +16,12 @@ const CampusPage = lazy(() => import('./pages/CampusPage'));
 const DocsPage = lazy(() => import('./pages/DocsPage'));
 const DocsViewer = lazy(() => import('./pages/DocsViewer'));
 
+// Egyptian Real Estate AI Suite
+const RealEstateCopilotPage = lazy(() => import('./pages/RealEstateCopilotPage'));
+const ValuationCalculatorPage = lazy(() => import('./pages/ValuationCalculatorPage'));
+const PaymentPlanSimulatorPage = lazy(() => import('./pages/PaymentPlanSimulatorPage'));
+const MarketExplorerPage = lazy(() => import('./pages/MarketExplorerPage'));
+
 // Branded loading fallback with MicroMind logo + golden spinner
 const LoadingFallback = () => (
     <div style={{
@@ -61,19 +67,16 @@ const LoadingFallback = () => (
             </div>
             {/* Brand text */}
             <div style={{
-                fontSize: '1.1rem',
+                fontSize: '1.2rem',
                 fontWeight: 700,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
                 color: '#E0AA3E',
                 marginBottom: '6px',
-            }}>MicroMind</div>
+            }}>العمده للعقارات</div>
             <div style={{
-                fontSize: '0.7rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: '#555',
-            }}>Business Suite</div>
+                fontSize: '0.75rem',
+                letterSpacing: '0.1em',
+                color: '#888',
+            }}>منظومة الذكاء العقاري المصري</div>
         </div>
         {/* Keyframe animations injected via style tag */}
         <style>{`
@@ -88,17 +91,27 @@ const LoadingFallback = () => (
     </div>
 );
 
+import WebLayout from './components/WebLayout';
+
 function App() {
     return (
         <Suspense fallback={<LoadingFallback />}>
             <Routes>
-                {/* Public Routes */}
+                {/* 🌟 PUBLIC REAL ESTATE WEBSITE (العمده للعقارات) */}
+                <Route element={<WebLayout />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/copilot" element={<RealEstateCopilotPage />} />
+                    <Route path="/valuation" element={<ValuationCalculatorPage />} />
+                    <Route path="/payment-plans" element={<PaymentPlanSimulatorPage />} />
+                    <Route path="/market" element={<MarketExplorerPage />} />
+                </Route>
+
+                {/* Login Route */}
                 <Route path="/login" element={<LoginScreen />} />
 
-                {/* Protected Routes */}
+                {/* Optional Protected Back-Office Routes */}
                 <Route element={<ProtectedRoute />}>
                     <Route element={<ManagerLayout />}>
-                        <Route path="/" element={<HomePage />} />
                         <Route path="/copilots" element={<CoPilotsPage />} />
                         <Route path="/documents" element={<DocumentsLibrary />} />
                         <Route path="/analytics/dashboards" element={<DashboardsPage />} />
@@ -111,7 +124,7 @@ function App() {
                     </Route>
                 </Route>
 
-                {/* Fallback redirect */}
+                {/* Fallback redirect to Home */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Suspense>

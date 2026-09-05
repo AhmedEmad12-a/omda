@@ -1,6 +1,11 @@
 {
     "nav": {
         "dashboard": "لوحة التحكم",
+        "realEstateSection": "العمده للعقارات (الذكاء الاصطناعي)",
+        "realEstateCopilot": "المستشار الذكي (العمده)",
+        "valuation": "مُقَيِّم الأسعار العادلة",
+        "paymentPlans": "حاسبة أنظمة السداد (NPV)",
+        "marketExplorer": "مستكشف المناطق والكمبوندات",
         "automation": "الأتمتة",
         "copilots": "المساعدون",
         "documents": "المستندات",

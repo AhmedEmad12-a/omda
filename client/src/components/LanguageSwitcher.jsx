@@ -7,7 +7,7 @@ const languages = [
     { code: 'ar', name: 'العربية', dir: 'rtl' },
     { code: 'fr', name: 'Français', dir: 'ltr' },
     { code: 'de', name: 'Deutsch', dir: 'ltr' },
-    { code: 'sw', name: 'Kiswahili', dir: 'ltr' },
+    { code: 'sw', name: 'Kiswahili', dir: 'ltr' }
 ];
 
 export default function LanguageSwitcher() {

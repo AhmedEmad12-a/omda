@@ -21,9 +21,9 @@ i18n
             de: { translation: deTranslations },
             sw: { translation: swTranslations }
         },
-        fallbackLng: 'en',
-        supportedLngs: ['en', 'ar', 'fr', 'de', 'sw'],
-        lng: localStorage.getItem('language') || 'en',
+        fallbackLng: 'ar',
+        supportedLngs: ['ar', 'en', 'fr', 'de', 'sw'],
+        lng: localStorage.getItem('language') || 'ar',
         debug: false,
 
         interpolation: {

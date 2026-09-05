@@ -37,6 +37,8 @@ const dashboardRoutes = require('./routes/dashboards');
 app.use('/api/dashboards', dashboardRoutes);
 const aiRoutes = require('./routes/ai');
 app.use('/api/v1/ai', aiRoutes);
+const realEstateRoutes = require('./routes/realEstate');
+app.use('/api/v1/real-estate', realEstateRoutes);
 
 // Placeholder routes
 app.get('/api', (req, res) => {

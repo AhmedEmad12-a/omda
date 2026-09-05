@@ -1,6 +1,11 @@
 {
     "nav": {
         "dashboard": "Dashboard",
+        "realEstateSection": "El Omda Real Estate AI",
+        "realEstateCopilot": "El Omda AI Copilot",
+        "valuation": "Fair Price Valuator",
+        "paymentPlans": "Payment Plan & NPV",
+        "marketExplorer": "Market & Zone Explorer",
         "automation": "Automation",
         "copilots": "Co-Pilots",
         "documents": "Documents",

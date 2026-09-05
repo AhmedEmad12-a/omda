@@ -41,8 +41,8 @@
   --success-color: #10B981;
 
   /* Typography */
-  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --heading-font: 'Outfit', sans-serif;
+  --font-family: 'Cairo', 'Alexandria', system-ui, -apple-system, sans-serif;
+  --heading-font: 'Alexandria', 'Cairo', sans-serif;
 
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -360,4 +360,13 @@ option:checked {
   backdrop-filter: blur(2px);
   /* Premium touch */
   z-index: 40;
+}
+
+/* العمده للعقارات - Global Typography & Real Estate Styling */
+body, button, input, select, textarea {
+  font-family: 'Cairo', system-ui, -apple-system, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Alexandria', 'Cairo', sans-serif !important;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
-import { User, Lock, ArrowRight } from 'lucide-react';
+import { User, Lock, ArrowRight, Sparkles, Building2, ShieldCheck } from 'lucide-react';
 
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
@@ -17,289 +17,123 @@ const LoginScreen = () => {
 
         try {
             await authService.login(username, password);
-            const user = authService.getCurrentUser();
-
-            if (user.role === 'MANAGER') {
-                navigate('/');
-            } else {
-                navigate('/collector/tasks');
-            }
+            navigate('/');
         } catch {
-            setError('Invalid credentials. Please try again.');
+            setError('بيانات الدخول غير صحيحة، أو يمكنك استخدام زر الدخول السريع أدناه للتجربة الفورية.');
         } finally {
             setLoading(false);
         }
     };
 
+    const handleDirectDemoAccess = () => {
+        localStorage.setItem('token', 'demo-jwt-token');
+        localStorage.setItem('user', JSON.stringify({
+            id: 'demo-user-1',
+            displayName: 'مستثمر عقاري',
+            name: 'مستثمر عقاري',
+            role: 'ADMIN',
+            email: 'investor@alomda.ai'
+        }));
+        navigate('/');
+    };
+
     return (
-        <div style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'var(--bg-page)',
-            padding: '2rem'
-        }}>
+        <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#060A11] via-[#0D1524] to-[#04070D] relative overflow-hidden" dir="rtl">
+            {/* Ambient Lighting Orbs */}
+            <div className="absolute top-1/4 -right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
             {/* Login Card */}
-            <div style={{
-                width: '100%',
-                maxWidth: '440px',
-                backgroundColor: 'var(--bg-surface)',
-                borderRadius: '12px',
-                border: '1px solid var(--border)',
-                overflow: 'hidden',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
-            }}>
-                {/* Header */}
-                <div style={{
-                    padding: '2.5rem 2rem 2rem 2rem',
-                    textAlign: 'center',
-                    borderBottom: '1px solid var(--border)'
-                }}>
-                    {/* Logo */}
-                    <div style={{
-                        width: '64px',
-                        height: '64px',
-                        margin: '0 auto 1.5rem auto',
-                        background: 'linear-gradient(135deg, #E0AA3E 0%, #F5C451 100%)',
-                        borderRadius: '12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '28px',
-                        fontWeight: '700',
-                        color: '#000000',
-                        letterSpacing: '1px'
-                    }}>
-                        YCC
+            <div className="w-full max-w-md bg-[#0F182A]/90 border border-amber-500/25 rounded-3xl p-8 shadow-2xl backdrop-blur-xl relative z-10">
+                {/* Header & Emblem */}
+                <div className="text-center pb-6 border-b border-white/10">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/40 flex items-center justify-center shadow-lg shadow-amber-500/15">
+                        <span className="text-3xl">🏢</span>
                     </div>
 
-                    {/* Title */}
-                    <h1 style={{
-                        margin: '0 0 0.5rem 0',
-                        fontSize: '1.75rem',
-                        fontWeight: '700',
-                        color: 'var(--text-primary)'
-                    }}>
-                        Yasra
+                    <h1 className="text-2xl font-black text-white tracking-tight">
+                        العمده للعقارات
                     </h1>
-                    <p style={{
-                        margin: 0,
-                        fontSize: '13px',
-                        fontWeight: '600',
-                        color: '#E0AA3E',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px'
-                    }}>
-                        Credit Control
+                    <p className="text-xs font-semibold text-amber-400 mt-1">
+                        منظومة المستشار والتقييم العقاري الذكي
                     </p>
                 </div>
 
-                {/* Form Section */}
-                <div style={{
-                    padding: '2rem'
-                }}>
-                    <h2 style={{
-                        margin: '0 0 1.5rem 0',
-                        fontSize: '1.25rem',
-                        fontWeight: '600',
-                        color: 'var(--text-primary)'
-                    }}>
-                        Welcome Back
-                    </h2>
-
-                    <form onSubmit={handleLogin}>
-                        {/* Username Field */}
-                        <div style={{ marginBottom: '1.25rem' }}>
-                            <label style={{
-                                display: 'block',
-                                marginBottom: '0.5rem',
-                                fontSize: '0.875rem',
-                                fontWeight: '600',
-                                color: 'var(--text-muted)'
-                            }}>
-                                Username
-                            </label>
-                            <div style={{ position: 'relative' }}>
-                                <User
-                                    size={18}
-                                    color="var(--text-muted)"
-                                    style={{
-                                        position: 'absolute',
-                                        left: '14px',
-                                        top: '50%',
-                                        transform: 'translateY(-50%)',
-                                        pointerEvents: 'none'
-                                    }}
-                                />
-                                <input
-                                    type="text"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    placeholder="Enter your username"
-                                    style={{
-                                        width: '100%',
-                                        padding: '12px 14px 12px 44px',
-                                        borderRadius: '8px',
-                                        border: '1px solid var(--border)',
-                                        backgroundColor: 'var(--bg-input)',
-                                        color: 'var(--text-primary)',
-                                        fontSize: '0.95rem',
-                                        outline: 'none',
-                                        boxSizing: 'border-box',
-                                        transition: 'border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                                    }}
-                                    onFocus={(e) => e.target.style.borderColor = '#E0AA3E'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        {/* Password Field */}
-                        <div style={{ marginBottom: '1.25rem' }}>
-                            <label style={{
-                                display: 'block',
-                                marginBottom: '0.5rem',
-                                fontSize: '0.875rem',
-                                fontWeight: '600',
-                                color: 'var(--text-muted)'
-                            }}>
-                                Password
-                            </label>
-                            <div style={{ position: 'relative' }}>
-                                <Lock
-                                    size={18}
-                                    color="var(--text-muted)"
-                                    style={{
-                                        position: 'absolute',
-                                        left: '14px',
-                                        top: '50%',
-                                        transform: 'translateY(-50%)',
-                                        pointerEvents: 'none'
-                                    }}
-                                />
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Enter your password"
-                                    style={{
-                                        width: '100%',
-                                        padding: '12px 14px 12px 44px',
-                                        borderRadius: '8px',
-                                        border: '1px solid var(--border)',
-                                        backgroundColor: 'var(--bg-input)',
-                                        color: 'var(--text-primary)',
-                                        fontSize: '0.95rem',
-                                        outline: 'none',
-                                        boxSizing: 'border-box',
-                                        transition: 'border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                                    }}
-                                    onFocus={(e) => e.target.style.borderColor = '#E0AA3E'}
-                                    onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        {/* Forgot Password Link */}
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'flex-end',
-                            marginBottom: '1.5rem'
-                        }}>
-                            <a
-                                href="#"
-                                style={{
-                                    color: '#E0AA3E',
-                                    fontSize: '0.85rem',
-                                    textDecoration: 'none',
-                                    fontWeight: '500',
-                                    transition: 'color 150ms'
-                                }}
-                                onMouseEnter={(e) => e.target.style.color = '#F5C451'}
-                                onMouseLeave={(e) => e.target.style.color = '#E0AA3E'}
-                            >
-                                Forgot username or password?
-                            </a>
-                        </div>
-
-                        {/* Error Message */}
-                        {error && (
-                            <div style={{
-                                backgroundColor: 'rgba(220, 38, 38, 0.1)',
-                                border: '1px solid rgba(220, 38, 38, 0.3)',
-                                color: '#fca5a5',
-                                padding: '12px 14px',
-                                borderRadius: '8px',
-                                marginBottom: '1.5rem',
-                                fontSize: '0.9rem',
-                                fontWeight: '500'
-                            }}>
-                                {error}
-                            </div>
-                        )}
-
-                        {/* Login Button */}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            style={{
-                                width: '100%',
-                                padding: '14px 24px',
-                                borderRadius: '8px',
-                                border: 'none',
-                                backgroundColor: loading ? '#ccaa44' : '#E0AA3E',
-                                color: '#000000',
-                                fontSize: '1rem',
-                                fontWeight: '600',
-                                cursor: loading ? 'not-allowed' : 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
-                                transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-                                opacity: loading ? 0.7 : 1
-                            }}
-                            onMouseEnter={(e) => {
-                                if (!loading) e.target.style.backgroundColor = '#F5C451';
-                            }}
-                            onMouseLeave={(e) => {
-                                if (!loading) e.target.style.backgroundColor = '#E0AA3E';
-                            }}
-                        >
-                            {loading ? (
-                                <>
-                                    <div className="spinner" style={{
-                                        width: '16px',
-                                        height: '16px',
-                                        border: '2px solid rgba(0, 0, 0, 0.3)',
-                                        borderTopColor: '#000000',
-                                        borderRadius: '50%'
-                                    }}></div>
-                                    Logging in...
-                                </>
-                            ) : (
-                                <>
-                                    Log In
-                                    <ArrowRight size={20} />
-                                </>
-                            )}
-                        </button>
-                    </form>
+                {/* Quick 1-Click Access Banner */}
+                <div className="my-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30">
+                    <div className="flex items-center gap-2 text-amber-300 text-xs font-bold mb-2">
+                        <Sparkles className="w-4 h-4" />
+                        <span>تجربة فورية بدون تسجيل حساب:</span>
+                    </div>
+                    <button
+                        onClick={handleDirectDemoAccess}
+                        className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-black font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all transform hover:-translate-y-0.5"
+                    >
+                        <span>⚡ الدخول المباشر إلى المنظومة</span>
+                        <ArrowRight className="w-4 h-4 rotate-180" />
+                    </button>
                 </div>
 
-                {/* Footer */}
-                <div style={{
-                    padding: '1.5rem 2rem',
-                    textAlign: 'center',
-                    fontSize: '0.8rem',
-                    color: 'var(--text-muted)',
-                    borderTop: '1px solid var(--border)'
-                }}>
-                    <p style={{ margin: '0 0 0.25rem 0' }}>Version 1.0.0</p>
-                    <p style={{ margin: 0 }}>Contact IT Support for access issues.</p>
+                <div className="relative flex items-center justify-center my-6">
+                    <div className="border-t border-white/10 w-full"></div>
+                    <span className="bg-[#0F182A] px-3 text-[11px] text-neutral-400 uppercase font-semibold">
+                        أو تسجيل الدخول
+                    </span>
+                    <div className="border-t border-white/10 w-full"></div>
+                </div>
+
+                {/* Form */}
+                <form onSubmit={handleLogin} className="space-y-4">
+                    <div>
+                        <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            البريد الإلكتروني / اسم المستخدم
+                        </label>
+                        <div className="relative">
+                            <User className="w-4 h-4 text-neutral-500 absolute top-3.5 right-3.5 pointer-events-none" />
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="admin@acme.com"
+                                className="w-full bg-neutral-900/90 border border-white/15 focus:border-amber-500 rounded-xl pr-10 pl-4 py-2.5 text-sm text-white placeholder-neutral-500 focus:outline-none transition-all"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                            كلمة المرور
+                        </label>
+                        <div className="relative">
+                            <Lock className="w-4 h-4 text-neutral-500 absolute top-3.5 right-3.5 pointer-events-none" />
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="••••••••"
+                                className="w-full bg-neutral-900/90 border border-white/15 focus:border-amber-500 rounded-xl pr-10 pl-4 py-2.5 text-sm text-white placeholder-neutral-500 focus:outline-none transition-all"
+                            />
+                        </div>
+                    </div>
+
+                    {error && (
+                        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs leading-relaxed">
+                            {error}
+                        </div>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm border border-white/15 transition-all flex items-center justify-center gap-2"
+                    >
+                        {loading ? 'جاري التحقق...' : 'تسجيل الدخول'}
+                    </button>
+                </form>
+
+                {/* Footer Notes */}
+                <div className="mt-6 pt-4 border-t border-white/10 text-center text-[11px] text-neutral-400">
+                    العمده للعقارات © 2025-2026 | مدعوم بنماذج الذكاء الاصطناعي العقاري
                 </div>
             </div>
         </div>
