@@ -22,9 +22,6 @@ const ValuationCalculatorPage = lazy(() => import('./pages/ValuationCalculatorPa
 const PaymentPlanSimulatorPage = lazy(() => import('./pages/PaymentPlanSimulatorPage'));
 const MarketExplorerPage = lazy(() => import('./pages/MarketExplorerPage'));
 
-// ❤️ Dedicated Amola Website
-const AmolaWebsite = lazy(() => import('./pages/AmolaWebsite'));
-
 // Branded loading fallback with MicroMind logo + golden spinner
 const LoadingFallback = () => (
     <div style={{
@@ -74,7 +71,7 @@ const LoadingFallback = () => (
                 fontWeight: 700,
                 color: '#E0AA3E',
                 marginBottom: '6px',
-            }}>أمولة للعقارات</div>
+            }}>العمده للعقارات</div>
             <div style={{
                 fontSize: '0.75rem',
                 letterSpacing: '0.1em',
@@ -100,13 +97,9 @@ function App() {
     return (
         <Suspense fallback={<LoadingFallback />}>
             <Routes>
-                {/* ❤️ DEDICATED AMOLA WEBSITE */}
-                <Route path="/" element={<AmolaWebsite />} />
-                <Route path="/amola" element={<AmolaWebsite />} />
-
-                {/* Real Estate Suite under /real-estate */}
+                {/* 🌟 PUBLIC REAL ESTATE WEBSITE (العمده للعقارات) */}
                 <Route element={<WebLayout />}>
-                    <Route path="/real-estate" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/copilot" element={<RealEstateCopilotPage />} />
                     <Route path="/valuation" element={<ValuationCalculatorPage />} />
                     <Route path="/payment-plans" element={<PaymentPlanSimulatorPage />} />

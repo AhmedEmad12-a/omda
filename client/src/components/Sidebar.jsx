@@ -57,7 +57,7 @@ const Sidebar = () => {
         },
         { 
             id: 'copilot', 
-            label: isRTL ? 'المستشار الذكي (أمولة AI)' : 'Amola AI Copilot', 
+            label: isRTL ? 'المستشار الذكي (العمده AI)' : 'El Omda AI Copilot', 
             path: '/copilot', 
             icon: Bot, 
             badge: isRTL ? 'مباشر' : 'Live' 
@@ -110,8 +110,8 @@ const Sidebar = () => {
                     🏢
                 </div>
                 <div className="sidebar-branding">
-                    <div className="brand-name">أمولة للعقارات</div>
-                    <div className="product-name">Amola Real Estate AI</div>
+                    <div className="brand-name">العمده للعقارات</div>
+                    <div className="product-name">منظومة الذكاء العقاري</div>
                 </div>
             </div>
 
