@@ -46,7 +46,7 @@ export default function WebLayout() {
                     <div className="hidden sm:flex items-center gap-4 text-neutral-400">
                         <span>📞 {isRTL ? 'الخط الساخن للاستشارة:' : 'Helpline:'} <b className="text-amber-400">19XXX</b></span>
                         <span className="text-neutral-700">|</span>
-                        <LanguageSwitcher />
+                        <LanguageSwitcher direction="down" />
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@ export default function WebLayout() {
                         </div>
                         <div>
                             <div className="text-xl font-black text-white tracking-tight flex items-center gap-1.5">
-                                <span>العمده للعقارات</span>
+                                <span>{isRTL ? 'العمده للعقارات' : 'El Omda Real Estate'}</span>
                             </div>
                             <div className="text-[10px] font-bold text-amber-400 tracking-wider">
                                 {isRTL ? 'بوابة الذكاء العقاري في مصر' : 'PropTech Real Estate Intelligence'}
@@ -100,18 +100,19 @@ export default function WebLayout() {
 
                     {/* Right Action Buttons */}
                     <div className="hidden sm:flex items-center gap-3">
+                        <LanguageSwitcher compact={true} />
                         <button
                             onClick={() => navigate('/copilot')}
                             className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-black font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5"
                         >
                             <Bot className="w-4 h-4" />
-                            <span>استشر العمدة AI الآن</span>
+                            <span>{isRTL ? 'استشر العمدة AI الآن' : 'Consult El Omda AI'}</span>
                         </button>
                     </div>
 
                     {/* Mobile Hamburger Button */}
                     <div className="flex lg:hidden items-center gap-2">
-                        <LanguageSwitcher />
+                        <LanguageSwitcher compact={true} />
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="p-2 rounded-xl bg-white/5 text-neutral-300 hover:text-white border border-white/10"
@@ -134,16 +135,17 @@ export default function WebLayout() {
                                 {link.label}
                             </NavLink>
                         ))}
-                        <div className="pt-2 border-t border-white/10">
+                        <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
+                            <LanguageSwitcher direction="down" />
                             <button
                                 onClick={() => {
                                     setMobileMenuOpen(false);
                                     navigate('/copilot');
                                 }}
-                                className="w-full py-3 rounded-xl bg-amber-500 text-black font-bold text-xs flex items-center justify-center gap-2"
+                                className="flex-1 py-2.5 rounded-xl bg-amber-500 text-black font-bold text-xs flex items-center justify-center gap-2"
                             >
                                 <Bot className="w-4 h-4" />
-                                <span>استشر العمدة AI</span>
+                                <span>{isRTL ? 'استشر العمدة AI' : 'Consult El Omda AI'}</span>
                             </button>
                         </div>
                     </div>
@@ -175,54 +177,60 @@ export default function WebLayout() {
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <span className="text-2xl">🏢</span>
-                                <span className="text-lg font-black text-white">العمده للعقارات</span>
+                                <span className="text-lg font-black text-white">{isRTL ? 'العمده للعقارات' : 'El Omda Real Estate'}</span>
                             </div>
                             <p className="text-neutral-400 leading-relaxed text-[11px]">
-                                أول منصة عقارية ذكية في مصر تجمع بين فحص الصفقات العادلة، محاكاة أنظمة السداد مع التضخم، والاستشارة المستقلة لحماية مصلحة المشتري والمستثمر.
+                                {isRTL 
+                                    ? 'أول منصة عقارية ذكية في مصر تجمع بين فحص الصفقات العادلة، محاكاة أنظمة السداد مع التضخم، والاستشارة المستقلة لحماية مصلحة المشتري والمستثمر.'
+                                    : 'Egypt’s premier PropTech AI platform combining fair market valuation, inflation-adjusted installment simulation, and unbiased advisory.'
+                                }
                             </p>
                             <div className="flex items-center gap-2 text-emerald-400 font-bold text-[11px]">
                                 <ShieldCheck className="w-4 h-4" />
-                                <span>تقييمات مستقلة 100% بدون انحياز</span>
+                                <span>{isRTL ? 'تقييمات مستقلة 100% بدون انحياز' : '100% Independent & Unbiased Valuations'}</span>
                             </div>
                         </div>
 
                         {/* Top Zones */}
                         <div>
                             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-                                أشهر مناطق الاستثمار
+                                {isRTL ? 'أشهر مناطق الاستثمار' : 'Top Investment Areas'}
                             </h4>
                             <ul className="space-y-2 text-[11px]">
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">القاهرة الجديدة والتجمع الخامس</a></li>
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">الشيخ زايد وتوسعات زايد الجديدة</a></li>
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">العاصمة الإدارية الجديدة (R7, R8, CBD)</a></li>
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">الساحل الشمالي ومشروعات رأس الحكمة</a></li>
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">مدينة المستقبل والشروق</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'القاهرة الجديدة والتجمع الخامس' : 'New Cairo & 5th Settlement'}</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'الشيخ زايد وتوسعات زايد الجديدة' : 'Sheikh Zayed & New Zayed'}</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'العاصمة الإدارية الجديدة (R7, R8, CBD)' : 'New Administrative Capital (R7, R8, CBD)'}</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'الساحل الشمالي ومشروعات رأس الحكمة' : 'North Coast & Ras El Hekma'}</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'مدينة المستقبل والشروق' : 'Mostakbal City & El Shorouk'}</a></li>
                             </ul>
                         </div>
 
                         {/* Smart Tools */}
                         <div>
                             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-                                أدوات المنظومة الذكية
+                                {isRTL ? 'أدوات المنظومة الذكية' : 'Smart PropTech Suite'}
                             </h4>
                             <ul className="space-y-2 text-[11px]">
-                                <li><a href="/copilot" className="hover:text-amber-400 transition-colors">المستشار العقاري التفاعلي (العمدة AI)</a></li>
-                                <li><a href="/valuation" className="hover:text-amber-400 transition-colors">مُقَيِّم الأسعار وفاحص الصفقات اللقطة</a></li>
-                                <li><a href="/payment-plans" className="hover:text-amber-400 transition-colors">حاسبة القيمة الحقيقية للتقسيط (NPV)</a></li>
-                                <li><a href="/market" className="hover:text-amber-400 transition-colors">مؤشر متوسط أسعار المتر في مصر</a></li>
+                                <li><a href="/copilot" className="hover:text-amber-400 transition-colors">{isRTL ? 'المستشار العقاري التفاعلي (العمدة AI)' : 'Interactive AI Advisor (El Omda)'}</a></li>
+                                <li><a href="/valuation" className="hover:text-amber-400 transition-colors">{isRTL ? 'مُقَيِّم الأسعار وفاحص الصفقات اللقطة' : 'Fair Price Valuator & Deal Auditor'}</a></li>
+                                <li><a href="/payment-plans" className="hover:text-amber-400 transition-colors">{isRTL ? 'حاسبة القيمة الحقيقية للتقسيط (NPV)' : 'Real Installment Value Calculator (NPV)'}</a></li>
+                                <li><a href="/market" className="hover:text-amber-400 transition-colors">{isRTL ? 'مؤشر متوسط أسعار المتر في مصر' : 'Egypt Price Index per m²'}</a></li>
                             </ul>
                         </div>
 
                         {/* Contact & Support */}
                         <div>
                             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2">
-                                تواصل مع فريق العمده
+                                {isRTL ? 'تواصل مع فريق العمده' : 'Contact El Omda Team'}
                             </h4>
                             <p className="text-[11px] text-neutral-400 mb-3">
-                                فريق من المستشارين العقاريين والماليين لمساعدتك في اتخاذ أفضل قرار شراء.
+                                {isRTL 
+                                    ? 'فريق من المستشارين العقاريين والماليين لمساعدتك في اتخاذ أفضل قرار شراء.'
+                                    : 'A dedicated team of property and financial consultants to help you make the best purchase decision.'
+                                }
                             </p>
                             <div className="space-y-2 text-[11px] text-neutral-300">
-                                <div>📍 القاهرة الجديدة، التجمع الخامس، مصر</div>
+                                <div>📍 {isRTL ? 'القاهرة الجديدة، التجمع الخامس، مصر' : 'New Cairo, 5th Settlement, Egypt'}</div>
                                 <div>✉️ info@alomda-realestate.com</div>
                                 <div className="text-amber-400 font-bold">📞 19XXX / 010XXXXXXXX</div>
                             </div>
@@ -232,10 +240,16 @@ export default function WebLayout() {
                     {/* Bottom Disclaimer */}
                     <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-neutral-400">
                         <div>
-                            جميع الحقوق محفوظة © {new Date().getFullYear()} العمده للعقارات (El Omda Real Estate AI).
+                            {isRTL 
+                                ? `جميع الحقوق محفوظة © ${new Date().getFullYear()} العمده للعقارات (El Omda Real Estate AI).`
+                                : `All rights reserved © ${new Date().getFullYear()} El Omda Real Estate AI.`
+                            }
                         </div>
                         <div className="text-neutral-400">
-                            التقييمات والتحليلات مبنية على مؤشرات السوق العقاري المصري ونماذج الذكاء الاصطناعي الاستشارية.
+                            {isRTL 
+                                ? 'التقييمات والتحليلات مبنية على مؤشرات السوق العقاري المصري ونماذج الذكاء الاصطناعي الاستشارية.'
+                                : 'Valuations & metrics are powered by Egyptian real estate market benchmarks & advisory AI models.'
+                            }
                         </div>
                     </div>
                 </div>

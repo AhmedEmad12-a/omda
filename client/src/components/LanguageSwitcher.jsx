@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, ChevronUp } from 'lucide-react';
+import { Globe, ChevronDown, Check } from 'lucide-react';
 
 const languages = [
-    { code: 'en', name: 'English', dir: 'ltr' },
-    { code: 'ar', name: 'العربية', dir: 'rtl' },
-    { code: 'fr', name: 'Français', dir: 'ltr' },
-    { code: 'de', name: 'Deutsch', dir: 'ltr' },
-    { code: 'sw', name: 'Kiswahili', dir: 'ltr' }
+    { code: 'ar', name: 'العربية', short: 'عربي', dir: 'rtl', flag: '🇪🇬' },
+    { code: 'en', name: 'English', short: 'EN', dir: 'ltr', flag: '🇬🇧' },
+    { code: 'fr', name: 'Français', short: 'FR', dir: 'ltr', flag: '🇫🇷' },
+    { code: 'de', name: 'Deutsch', short: 'DE', dir: 'ltr', flag: '🇩🇪' },
+    { code: 'sw', name: 'Kiswahili', short: 'SW', dir: 'ltr', flag: '🇰🇪' }
 ];
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ direction = 'down', compact = false }) {
     const { i18n } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
@@ -18,7 +18,6 @@ export default function LanguageSwitcher() {
     const currentLang = languages.find((l) => l.code === i18n.language) || languages[0];
 
     useEffect(() => {
-        // Update HTML direction and language
         document.documentElement.dir = currentLang.dir || 'ltr';
         document.documentElement.lang = i18n.language;
 
@@ -44,100 +43,77 @@ export default function LanguageSwitcher() {
 
     const changeLanguage = (langCode) => {
         i18n.changeLanguage(langCode);
+        localStorage.setItem('language', langCode);
         setIsOpen(false);
     };
 
-    return (
-        <div className="language-switcher-container" ref={dropdownRef} style={{ position: 'relative', width: '100%' }}>
+    // Quick toggle between Arabic and English
+    const toggleQuick = () => {
+        const next = i18n.language === 'ar' ? 'en' : 'ar';
+        changeLanguage(next);
+    };
+
+    if (compact) {
+        return (
             <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="footer-link"
-                style={{
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    backgroundColor: isOpen ? 'rgba(224, 170, 62, 0.12)' : 'transparent',
-                    border: '1px solid var(--border-subtle)',
-                    color: isOpen ? '#E0AA3E' : 'var(--text-secondary)'
-                }}
+                onClick={toggleQuick}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 hover:bg-amber-500/20 text-neutral-300 hover:text-amber-400 border border-white/10 hover:border-amber-500/40 transition-all shadow-sm"
+                title={i18n.language === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'}
             >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Globe size={16} style={{ color: isOpen ? '#E0AA3E' : 'var(--text-muted)' }} />
-                    <span style={{ fontSize: '13px', fontWeight: '500' }}>{currentLang.name}</span>
+                <Globe className="w-3.5 h-3.5 text-amber-400" />
+                <span>{i18n.language === 'ar' ? 'English' : 'العربية'}</span>
+            </button>
+        );
+    }
+
+    return (
+        <div className="relative inline-block text-start" ref={dropdownRef}>
+            <button
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                className="inline-flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl text-xs font-bold bg-neutral-900/80 hover:bg-neutral-800 text-neutral-200 hover:text-amber-400 border border-white/10 hover:border-amber-500/40 transition-all shadow-sm"
+            >
+                <div className="flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>{currentLang.flag} {currentLang.name}</span>
                 </div>
-                <ChevronUp
-                    size={14}
-                    style={{
-                        transition: 'transform 0.2s ease',
-                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                        opacity: 0.6
-                    }}
+                <ChevronDown
+                    className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-amber-400' : ''}`}
                 />
             </button>
 
             {isOpen && (
-                <div className="language-dropdown-menu" style={{
-                    position: 'absolute',
-                    bottom: 'calc(100% + 8px)',
-                    left: 0,
-                    right: 0,
-                    backgroundColor: 'var(--bg-component)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: '8px',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-                    zIndex: 2000,
-                    overflow: 'hidden',
-                    animation: 'dropdownFadeIn 200ms cubic-bezier(0, 0, 0.2, 1)'
-                }}>
-                    <div style={{ padding: '6px' }}>
-                        {languages.map((lang) => (
+                <div 
+                    className={`absolute z-[2500] min-w-[160px] py-1.5 rounded-2xl bg-[#0D1829] border border-amber-500/30 shadow-2xl shadow-black/80 backdrop-blur-xl ${
+                        direction === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'
+                    } ${i18n.language === 'ar' ? 'right-0' : 'left-0'}`}
+                >
+                    <div className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-amber-400/80 border-b border-white/5 mb-1">
+                        {i18n.language === 'ar' ? 'اختر اللغة' : 'Select Language'}
+                    </div>
+                    {languages.map((lang) => {
+                        const isSelected = lang.code === i18n.language;
+                        return (
                             <button
                                 key={lang.code}
+                                type="button"
                                 onClick={() => changeLanguage(lang.code)}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-between',
-                                    width: '100%',
-                                    padding: '10px 12px',
-                                    background: lang.code === i18n.language ? 'rgba(224, 170, 62, 0.1)' : 'transparent',
-                                    border: 'none',
-                                    borderRadius: '4px',
-                                    color: lang.code === i18n.language ? '#E0AA3E' : 'var(--text-primary)',
-                                    fontSize: '13px',
-                                    fontWeight: lang.code === i18n.language ? '600' : '400',
-                                    cursor: 'pointer',
-                                    textAlign: 'left',
-                                    transition: 'all 0.15s ease'
-                                }}
-                                onMouseEnter={(e) => {
-                                    if (lang.code !== i18n.language) {
-                                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
-                                    }
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (lang.code !== i18n.language) {
-                                        e.currentTarget.style.backgroundColor = 'transparent';
-                                    }
-                                }}
+                                className={`w-full flex items-center justify-between px-3 py-2 text-xs font-semibold transition-colors ${
+                                    isSelected 
+                                        ? 'bg-amber-500/15 text-amber-300 font-bold' 
+                                        : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                                }`}
                             >
-                                <span>{lang.name}</span>
-                                {lang.code === i18n.language && (
-                                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#E0AA3E' }} />
-                                )}
+                                <span className="flex items-center gap-2">
+                                    <span>{lang.flag}</span>
+                                    <span>{lang.name}</span>
+                                </span>
+                                {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
                             </button>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
             )}
-
-            <style>{`
-                @keyframes dropdownFadeIn {
-                    from { opacity: 0; transform: translateY(10px) scale(0.95); }
-                    to { opacity: 1; transform: translateY(0) scale(1); }
-                }
-            `}</style>
         </div>
     );
 }
